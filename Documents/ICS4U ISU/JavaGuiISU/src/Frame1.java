@@ -11,13 +11,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.util.ArrayList;
 import java.awt.Font;
+import java.awt.*;
 
-
+/*
+ * TODO: 
+ * - Complete CheckAns Method
+ * - Complete Progress Bar functionality
+ * - Complete Game functionally
+ * - Make game scalable with window size OR make window unscaleable 
+ */
 public class Frame1 implements ActionListener{
 	private ArrayList<String> questions = new ArrayList<String>();
 	private static JFrame frmGetQuizzing; 
@@ -32,17 +42,20 @@ public class Frame1 implements ActionListener{
 			{"Uber", "Google", "Amazon"}
 	};
 	
-	JRadioButton radBtn1 = new JRadioButton("");
-	JRadioButton radBtn2 = new JRadioButton("");
-	JRadioButton radBtn3 = new JRadioButton("");
-	JRadioButton radBtn4 = new JRadioButton("");
-	JLabel lblQuestion = new JLabel("");
-	JProgressBar pgbDone = new JProgressBar();
-	JProgressBar pgbWrong = new JProgressBar();
-	JButton btnSubmit = new JButton("Submit");
-	JButton btnRules = new JButton("Rules");
-	JLabel lblProgressBar = new JLabel("Progress");
-	JLabel lblWrong = new JLabel("Wrong");
+	private JRadioButton radBtn1 = new JRadioButton("");
+	private JRadioButton radBtn2 = new JRadioButton("");
+	private JRadioButton radBtn3 = new JRadioButton("");
+	private JRadioButton radBtn4 = new JRadioButton("");
+	private JLabel lblQuestion = new JLabel("");
+	private JProgressBar pgbDone = new JProgressBar();
+	private JProgressBar pgbWrong = new JProgressBar();
+	private JButton btnSubmit = new JButton("Submit");
+	private JButton btnRules = new JButton("Rules");
+	private JLabel lblProgressBar = new JLabel("Progress");
+	private JLabel lblWrong = new JLabel("Wrong");
+	
+	
+	private boolean checkAnsBool = false;
 	/**
 	 * Launch the application.
 	 */
@@ -73,6 +86,7 @@ public class Frame1 implements ActionListener{
 		frmGetQuizzing.setBounds(100, 100, 1000, 600);
 		frmGetQuizzing.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGetQuizzing.getContentPane().setLayout(null);
+		frmGetQuizzing.setLocationRelativeTo(null);
 		
 		//Questions
 		questions.add("What branch of physics deals with forces?");
@@ -153,12 +167,22 @@ public class Frame1 implements ActionListener{
 				
 			}
 		});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(buttonGroup.getSelection() != null) {
+					checkAns( buttonGroup.getSelection());
+				}
+			}
+		});
+		
 			
 		
 	}
 	
-	public boolean checkAns(JRadioButton btn) {
-		
+	public boolean checkAns(ButtonModel radBtn) {
+		System.out.println("working");
+		return true;
 	}
 	
 	public void displayNewQ() {
@@ -192,7 +216,15 @@ public class Frame1 implements ActionListener{
 	}
 	
 	public void displayRules() {
-		System.out.println("working");
+		JDialog rulesPop = new JDialog();
+		rulesPop.setTitle("Rules");
+		rulesPop.setLocationRelativeTo(frmGetQuizzing);
+		JLabel helpLabel = new JLabel("<html>\tSelect an answer to the question, then click submit. <br>\tThe top bar is your quiz progress, and the bottom-left bar is your wrong answer progress. <br>\tIf you get 3 answers wrong, the quiz is over and you can restart</html>");
+		rulesPop.add(helpLabel);
+		rulesPop.setSize(500, 500);
+		rulesPop.setVisible(true);
+		
+		
 	}
 	
 	public static void playAgain() {
