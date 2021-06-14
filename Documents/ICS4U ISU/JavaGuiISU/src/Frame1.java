@@ -5,10 +5,8 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -26,8 +24,6 @@ public class Frame1 implements ActionListener {
 	private static JFrame frmGetQuizzing;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private ArrayList<String> correctAns = new ArrayList<String>();
-
-	private ArrayList<String> wrongAns = new ArrayList<String>();
 
 	private String correctAnswerString = "";
 
@@ -84,7 +80,7 @@ public class Frame1 implements ActionListener {
 		lblQuestion.setFont(new Font("Roboto", Font.BOLD, 20));
 		// Questions
 		questions.add("What branch of physics deals with forces?");
-		questions.add("What type of langauge is HTML?");
+		questions.add("What type of language is HTML?");
 		questions.add("What type of language is Java?");
 		questions.add("Who invented Calculus?");
 		questions.add("Which company owns Instagram?");
@@ -96,26 +92,6 @@ public class Frame1 implements ActionListener {
 		correctAns.add("Isaac Newton");
 		correctAns.add("Facebook");
 
-		// Adding wrong answers
-		wrongAns.add("Kinematics");
-		wrongAns.add("Gravitation");
-		wrongAns.add("Waves and Sounds");
-
-		wrongAns.add("Object Oriented");
-		wrongAns.add("Database");
-		wrongAns.add("Scripting Langauge");
-
-		wrongAns.add("Database");
-		wrongAns.add("Markup Language");
-		wrongAns.add("Scripting Language");
-
-		wrongAns.add("Gottfried Leibniz");
-		wrongAns.add("Elon Musk");
-		wrongAns.add("Albert Einstein");
-
-		wrongAns.add("Uber");
-		wrongAns.add("Google");
-		wrongAns.add("Amazon");
 		// Creating buttons and labels: adding
 		buttonGroup.add(radBtn1);
 		radBtn1.setBounds(252, 350, 182, 23);
@@ -299,9 +275,9 @@ public class Frame1 implements ActionListener {
 			if (ansKey == 1) {
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn1.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
+				radBtn2.setText("Kinematics");
+				radBtn3.setText("Waves and Sounds");
+				radBtn4.setText("Gravitation");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -311,9 +287,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn2.setText(correctAns.get(random - 1));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
+				radBtn1.setText("Kinematics");
+				radBtn3.setText("Waves and Sounds");
+				radBtn4.setText("Gravitation");
 
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
@@ -324,9 +300,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn3.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
+				radBtn2.setText("Kinematics");
+				radBtn1.setText("Waves and Sounds");
+				radBtn4.setText("Gravitation");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -336,9 +312,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn4.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
+				radBtn2.setText("Kinematics");
+				radBtn3.setText("Waves and Sounds");
+				radBtn1.setText("Gravitation");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -351,9 +327,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn1.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Object Oriented");
+				radBtn3.setText("Database");
+				radBtn4.setText("Scripting Language");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -363,9 +339,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn2.setText(correctAns.get(random - 1));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn1.setText("Object Oriented");
+				radBtn3.setText("Database");
+				radBtn4.setText("Scripting Language");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -375,9 +351,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn3.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Object Oriented");
+				radBtn1.setText("Database");
+				radBtn4.setText("Scripting Language");
 
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
@@ -388,9 +364,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn4.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Object Oriented");
+				radBtn3.setText("Database");
+				radBtn1.setText("Scripting Language");
 
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
@@ -405,9 +381,9 @@ public class Frame1 implements ActionListener {
 				// radBtn1.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn1.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Database");
+				radBtn3.setText("Markup Language");
+				radBtn4.setText("Scripting Language");
 
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
@@ -418,9 +394,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn2.setText(correctAns.get(random - 1));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn1.setText("Database");
+				radBtn3.setText("Markup Language");
+				radBtn4.setText("Scripting Language");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -430,9 +406,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn3.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Database");
+				radBtn1.setText("Markup Language");
+				radBtn4.setText("Scripting Language");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -442,9 +418,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn4.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
+				radBtn2.setText("Database");
+				radBtn3.setText("Markup Language");
+				radBtn1.setText("Scripting Language");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -456,9 +432,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn1.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
+				radBtn2.setText("Gottfried Leibniz");
+				radBtn3.setText("Elon Musk");
+				radBtn4.setText("Albert Einstein");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -468,9 +444,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn2.setText(correctAns.get(random - 1));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
+				radBtn1.setText("Gottfried Leibniz");
+				radBtn3.setText("Elon Musk");
+				radBtn4.setText("Albert Einstein");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -480,9 +456,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn3.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
+				radBtn2.setText("Gottfried Leibniz");
+				radBtn1.setText("Elon Musk");
+				radBtn4.setText("Albert Einstein");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -492,9 +468,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn4.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
+				radBtn2.setText("Gottfried Leibniz");
+				radBtn3.setText("Elon Musk");
+				radBtn1.setText("Albert Einstein");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -506,9 +482,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn1.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
+				radBtn2.setText("Uber");
+				radBtn3.setText("Google");
+				radBtn4.setText("Amazon");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -518,9 +494,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn2.setText(correctAns.get(random - 1));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Uber")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
+				radBtn1.setText("Uber");
+				radBtn3.setText("Google");
+				radBtn4.setText("Amazon");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -530,9 +506,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn3.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Google")));
-				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
+				radBtn2.setText("Uber");
+				radBtn1.setText("Google");
+				radBtn4.setText("Amazon");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
@@ -542,9 +518,9 @@ public class Frame1 implements ActionListener {
 
 				correctAnswerString = correctAns.get(random - 1);
 				radBtn4.setText(correctAns.get(random - 1));
-				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
-				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
-				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
+				radBtn2.setText("Uber");
+				radBtn3.setText("Google");
+				radBtn1.setText("Amazon");
 				radBtn1.setActionCommand(radBtn1.getText());
 				radBtn2.setActionCommand(radBtn2.getText());
 				radBtn3.setActionCommand(radBtn3.getText());
