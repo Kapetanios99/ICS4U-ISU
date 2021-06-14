@@ -1,17 +1,15 @@
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
+
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-import java.awt.Panel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JRadioButtonMenuItem;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JLabel;
@@ -23,27 +21,16 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.*;
 
-/*
- * TODO: 
- *
- * 
- * 
- * - Make game scalable with window size OR make window unscaleable 
- * 
- */
 public class Frame1 implements ActionListener {
 	private ArrayList<String> questions = new ArrayList<String>();
 	private static JFrame frmGetQuizzing;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private ArrayList<String> correctAns = new ArrayList<String>();
-	
 
 	private ArrayList<String> wrongAns = new ArrayList<String>();
 
 	private String correctAnswerString = "";
 
-
-	
 	private JRadioButton radBtn1 = new JRadioButton("");
 	private JRadioButton radBtn2 = new JRadioButton("");
 	private JRadioButton radBtn3 = new JRadioButton("");
@@ -129,10 +116,7 @@ public class Frame1 implements ActionListener {
 		wrongAns.add("Uber");
 		wrongAns.add("Google");
 		wrongAns.add("Amazon");
-		
-		
-		
-
+		// Creating buttons and labels: adding
 		buttonGroup.add(radBtn1);
 		radBtn1.setBounds(252, 350, 182, 23);
 		frmGetQuizzing.getContentPane().add(radBtn1);
@@ -148,12 +132,12 @@ public class Frame1 implements ActionListener {
 		buttonGroup.add(radBtn4);
 		radBtn4.setBounds(665, 438, 205, 23);
 		frmGetQuizzing.getContentPane().add(radBtn4);
-		lblQuestion.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 16));
+
 		lblQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 
 		lblQuestion.setBounds(221, 113, 542, 196);
 		frmGetQuizzing.getContentPane().add(lblQuestion);
-
+		lblQuestion.setFont(new Font("Roboto", Font.BOLD, 20));
 		pgbDone.setBounds(92, 24, 800, 23);
 		frmGetQuizzing.getContentPane().add(pgbDone);
 
@@ -172,13 +156,15 @@ public class Frame1 implements ActionListener {
 		lblWrong.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWrong.setBounds(112, 532, 55, 16);
 		frmGetQuizzing.getContentPane().add(lblWrong);
-		lblQuestion.setFont(new Font("Roboto", Font.BOLD, 20));
+
+		// Displays a new question
 		displayNewQ();
 
 		// Rules action listener
 		btnRules.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				// Displays rules
 				displayRules();
 
 			}
@@ -186,19 +172,20 @@ public class Frame1 implements ActionListener {
 
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
+				// If a radio button is selected, checks if its right and responds accordingly
 				if (buttonGroup.getSelection() != null) {
 					pgbDoneValue++;
 					pgbDone.setValue(pgbDoneValue);
 					checkAnsBool = checkAns(buttonGroup.getSelection());
 
 					if (checkAnsBool == true) {
-						
+
 						userScore++;
-						
+
 						lblQuestion.setText("Correct!");
-						btnSubmit.disable();
-						Timer timer = new Timer(1000, new ActionListener() {
+						btnSubmit.disable(); // Disabling and enabling button so that it cannot be clicked when unwanted
+						Timer timer = new Timer(1000, new ActionListener() { // A timer so the frame displays Correct
+																				// for some time
 
 							@Override
 							public void actionPerformed(ActionEvent arg0) {
@@ -233,6 +220,10 @@ public class Frame1 implements ActionListener {
 
 	}
 
+	/*
+	 * returns true if the selected buttons action command corresponds with the
+	 * correct answer
+	 */
 	public boolean checkAns(ButtonModel radBtn) {
 		if (radBtn.getActionCommand().equals(correctAnswerString)) {
 			return true;
@@ -241,9 +232,14 @@ public class Frame1 implements ActionListener {
 
 	}
 
-	public  int displayNewQ() {
-		
-		if(pgbWrong.getPercentComplete() == 1) {
+	/*
+	 * returns an int to escape method when necessary Displays a new question with
+	 * multiple choice answers
+	 */
+	public int displayNewQ() {
+		// Checks if the game is done and removes components
+		// displays the end of the game with the option to play again
+		if (pgbWrong.getPercentComplete() == 1) {
 			radBtn1.setVisible(false);
 			radBtn2.setVisible(false);
 			radBtn3.setVisible(false);
@@ -256,15 +252,16 @@ public class Frame1 implements ActionListener {
 			btnSubmit.setSize(150, 20);
 			btnSubmit.setText("Play Again?");
 			lblQuestion.setFont(new Font("Roboto", Font.BOLD, 20));
-			lblQuestion.setText("<html>Game Over! You got 3 questions wrong so you lost.<br>Your score was " + userScore + "/5<br>Would you like to play again?</html>");
+			lblQuestion.setText("<html>Game Over! You got 3 questions wrong so you lost.<br>Your score was " + userScore
+					+ "/5<br>Would you like to play again?</html>");
 			btnSubmit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					playAgain();
 				}
 			});
 			return 0;
-			
-		} else if(pgbDone.getPercentComplete() == 1) {
+			// Checks if user got 3 or more wrong and ends game with option to play again
+		} else if (pgbDone.getPercentComplete() == 1) {
 
 			radBtn1.setVisible(false);
 			radBtn2.setVisible(false);
@@ -278,7 +275,8 @@ public class Frame1 implements ActionListener {
 			btnSubmit.setSize(150, 20);
 			btnSubmit.setText("Play Again?");
 			lblQuestion.setFont(new Font("Roboto", Font.BOLD, 20));
-			lblQuestion.setText("<html>Congratulations!<br>Your score was " + userScore + "/5<br>Would you like to play again?</html>");
+			lblQuestion.setText("<html>Congratulations!<br>Your score was " + userScore
+					+ "/5<br>Would you like to play again?</html>");
 			btnSubmit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					playAgain();
@@ -286,17 +284,21 @@ public class Frame1 implements ActionListener {
 			});
 			return 0;
 		}
-		
-		
-		int random = (int) (Math.random() * (correctAns.size() - 1 + 1)) + 1;
-		lblQuestion.setText(questions.get(random - 1));
-		int ansKey = (int) (Math.random() * (4 - 1 + 1) + 1);
+
+		int random = (int) (Math.random() * (correctAns.size() - 1 + 1)) + 1; // to select question
+		lblQuestion.setText(questions.get(random - 1)); // sets question to label
+		int ansKey = (int) (Math.random() * (4 - 1 + 1) + 1); // to randomly dictate where correct answer should go on
+																// multiple choice
+
+		/*
+		 * The series of if-statements are to determine which question is being asked to
+		 * display the correct answers As well, if-statements are used to determine
+		 * which radio button to put correct answer
+		 */
 		if (lblQuestion.getText().equals("What branch of physics deals with forces?")) {
 			if (ansKey == 1) {
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Dynamics"));
-				//radBtn1.setText(correctAns.get(correctAns.indexOf("Dynamics")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn1.setText(correctAns.get(random -1));
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn1.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
@@ -306,11 +308,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 2) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Dynamics"));
-				//radBtn2.setText(correctAns.get(correctAns.indexOf("Dynamics")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn2.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn2.setText(correctAns.get(random - 1));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
@@ -321,11 +321,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 3) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Dynamics"));
-				//radBtn3.setText(correctAns.get(correctAns.indexOf("Dynamics")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn3.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn3.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
@@ -335,11 +333,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 4) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Dynamics"));
-				//radBtn4.setText(correctAns.get(correctAns.indexOf("Dynamics")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn4.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn4.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Kinematics")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Waves and Sounds")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Gravitation")));
@@ -349,14 +345,12 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			}
-		
+
 		} else if (lblQuestion.getText().equals("What type of langauge is HTML?")) {
 			if (ansKey == 1) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Markup Language"));
-				//radBtn1.setText(correctAns.get(correctAns.indexOf("Markup Language")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn1.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn1.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -366,12 +360,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 2) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Markup Language"));
-				
-				//radBtn2.setText(correctAns.get(correctAns.indexOf("Markup Language")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn2.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn2.setText(correctAns.get(random - 1));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -381,11 +372,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 3) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Markup Language"));
-			//	radBtn3.setText(correctAns.get(correctAns.indexOf("Markup Language")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn3.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn3.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -396,11 +385,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 4) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Markup Language"));
-				//radBtn4.setText(correctAns.get(correctAns.indexOf("Markup Language")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn4.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn4.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Object Oriented")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -413,11 +400,11 @@ public class Frame1 implements ActionListener {
 			}
 		} else if (lblQuestion.getText().equals("What type of language is Java?")) {
 			if (ansKey == 1) {
-		
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Object Oriented"));
-				//radBtn1.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn1.setText(correctAns.get(random -1));
+
+				// correctAnswerString = correctAns.get(correctAns.indexOf("Object Oriented"));
+				// radBtn1.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn1.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -428,11 +415,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 2) {
-		
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Object Oriented"));
-				//radBtn2.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn2.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn2.setText(correctAns.get(random - 1));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -442,11 +427,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 3) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Object Oriented"));
-				//radBtn3.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn3.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn3.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -456,11 +439,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 4) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Object Oriented"));
-				//radBtn4.setText(correctAns.get(correctAns.indexOf("Object Oriented")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn4.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn4.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Database")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Markup Language")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Scripting Language")));
@@ -472,11 +453,9 @@ public class Frame1 implements ActionListener {
 			}
 		} else if (lblQuestion.getText().equals("Who invented Calculus?")) {
 			if (ansKey == 1) {
-		
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Isaac Newton"));
-				//radBtn1.setText(correctAns.get(correctAns.indexOf("Isaac Newton")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn1.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn1.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
@@ -486,11 +465,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 2) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Isaac Newton"));
-				//radBtn2.setText(correctAns.get(correctAns.indexOf("Isaac Newton")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn2.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn2.setText(correctAns.get(random - 1));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
@@ -500,11 +477,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 3) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Isaac Newton"));
-				//radBtn3.setText(correctAns.get(correctAns.indexOf("Isaac Newton")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn3.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn3.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
@@ -514,11 +489,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 4) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Isaac Newton"));
-				//radBtn4.setText(correctAns.get(correctAns.indexOf("Isaac Newton")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn4.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn4.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Gottfried Leibniz")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Elon Musk")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Albert Einstein")));
@@ -530,11 +503,9 @@ public class Frame1 implements ActionListener {
 			}
 		} else if (lblQuestion.getText().equals("Which company owns Instagram?")) {
 			if (ansKey == 1) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Facebook"));
-				//radBtn1.setText(correctAns.get(correctAns.indexOf("Facebook")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn1.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn1.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
@@ -544,11 +515,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 2) {
-			
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Facebook"));
-				//radBtn2.setText(correctAns.get(correctAns.indexOf("Facebook")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn2.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn2.setText(correctAns.get(random - 1));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Uber")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
@@ -558,11 +527,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 3) {
-				
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Facebook"));
-				//radBtn3.setText(correctAns.get(correctAns.indexOf("Facebook")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn3.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn3.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Google")));
 				radBtn4.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
@@ -572,10 +539,9 @@ public class Frame1 implements ActionListener {
 				radBtn4.setActionCommand(radBtn4.getText());
 
 			} else if (ansKey == 4) {
-				//correctAnswerString = correctAns.get(correctAns.indexOf("Facebook"));
-				//radBtn4.setText(correctAns.get(correctAns.indexOf("Facebook")));
-				correctAnswerString = correctAns.get(random -1);
-				radBtn4.setText(correctAns.get(random -1));
+
+				correctAnswerString = correctAns.get(random - 1);
+				radBtn4.setText(correctAns.get(random - 1));
 				radBtn2.setText(wrongAns.get(wrongAns.indexOf("Uber")));
 				radBtn3.setText(wrongAns.get(wrongAns.indexOf("Google")));
 				radBtn1.setText(wrongAns.get(wrongAns.indexOf("Amazon")));
@@ -586,11 +552,16 @@ public class Frame1 implements ActionListener {
 
 			}
 		}
+		// removes the answer and questions so that they aren't asked again
 		correctAns.remove(random - 1);
 		questions.remove(random - 1);
 		return 0;
 	}
 
+	/*
+	 * displays a dialog window with the rules of the game works when btnRules is
+	 * clicked
+	 */
 	public void displayRules() {
 		JDialog rulesPop = new JDialog();
 		rulesPop.setTitle("Rules");
@@ -603,6 +574,10 @@ public class Frame1 implements ActionListener {
 
 	}
 
+	/*
+	 * Used to instantiate a new instance of the game when the user wants to play
+	 * again Works when btnSubmit is clicked after the game ends
+	 */
 	public static void playAgain() {
 		frmGetQuizzing.dispose();
 		run();
@@ -615,14 +590,14 @@ public class Frame1 implements ActionListener {
 
 	}
 
+	/*
+	 * Used to reset certain variables and display a new question after the user
+	 * answers
+	 */
 	public void reset() {
 		correctAnswerString = "";
 		buttonGroup.clearSelection();
 		displayNewQ();
-		
-	}
-	
-	public void displayEndPage() {
-		
+
 	}
 }
