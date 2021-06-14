@@ -322,7 +322,7 @@ public class Frame1 implements ActionListener {
 
 			}
 
-		} else if (lblQuestion.getText().equals("What type of langauge is HTML?")) {
+		} else if (lblQuestion.getText().equals("What type of language is HTML?")) {
 			if (ansKey == 1) {
 
 				correctAnswerString = correctAns.get(random - 1);
