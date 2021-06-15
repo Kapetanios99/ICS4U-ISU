@@ -19,6 +19,14 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.*;
 
+
+/*
+ * Brendan Mahadeo
+ * Start Date: 6/8/2021
+ * End Date: 6/14/2021
+ * Quiz Application using Java Swing and GUI
+ * ICS4U ISU
+ */
 public class Frame1 implements ActionListener {
 	private ArrayList<String> questions = new ArrayList<String>();
 	private static JFrame frmGetQuizzing;
